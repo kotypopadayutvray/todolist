@@ -1,0 +1,8 @@
+var path = require('path')
+
+module.exports = { 
+  'config': path.resolve('config', 'sequelizerc.js'),
+  'models-path': path.resolve('application', 'models'),
+  'seeders-path': path.resolve('database', 'seeds'),
+  'migrations-path': path.resolve('database', 'migrations'),
+};

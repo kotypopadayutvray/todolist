@@ -1,0 +1,18 @@
+.nav-bar {
+  height: 60px;
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: grey;
+}
+
+.nav-bar img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 75%;
+  margin: 0 auto;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+}

@@ -1,0 +1,15 @@
+Things to do with test:
+  ▫ Write tests for user @created(18-06-20 12:05) @started
+  ▫ Write tests for task @created(18-06-20 12:05)
+  ▫ Write tests for todolist @created(18-06-20 12:05)
+
+--- ✄ -----------------------
+
+Things to do with user's data:
+ ▫ Read how to store in the DB correctly user's password @created(18-06-20 12:05) @critical
+
+--- ✄ -----------------------
+
+Things to do with migrations:
+  ▫ Create indecies for tables @created(18-06-20 12:09) @high
+  ▫ Change length of password field for users table @created(18-06-20 12:16)

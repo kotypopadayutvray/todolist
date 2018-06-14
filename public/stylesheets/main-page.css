@@ -1,0 +1,117 @@
+.main-page {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+.main-page h1 {
+  font-size: 48px;
+  font-weight: 600;
+  font-style: bold;
+  text-align: center;
+}
+
+.main-page p {
+  font-size: 24px;
+  font-weight: 300;
+  text-align: justify;
+}
+
+.main-page p a:link {
+  color: #0F00E1;
+  text-decoration: none;
+}
+
+.main-page p a:hover {
+  text-decoration: underline;
+}
+
+.main-page p a:visited {
+  color: #0016B7;
+  text-decoration: none;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .main-page {
+    width: 100%;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  }
+
+  .main-page h1 {
+    font-size: 20px;
+    font-weight: 600;
+    font-style: bold;
+    text-align: center;
+  }
+
+  .main-page p {
+    font-size: 12px;
+    font-weight: 300;
+    text-align: justify;
+  }
+}
+
+@media only screen and (min-device-width : 480px) and (max-device-width : 768px) {
+  .main-page {
+    width: 100%;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  }
+
+  .main-page h1 {
+    font-size: 20px;
+    font-weight: 600;
+    font-style: bold;
+    text-align: center;
+  }
+
+  .main-page p {
+    font-size: 12px;
+    font-weight: 300;
+    text-align: justify;
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 968px) {
+  .main-page {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  }
+
+  .main-page h1 {
+    font-size: 27px;
+    font-weight: 400;
+    font-style: bold;
+    text-align: center;
+  }
+
+  .main-page p {
+    font-size: 16px;
+    font-weight: 300;
+    text-align: justify;
+  }
+}
+
+@media only screen and (min-device-width : 968px) and (max-device-width : 1224px) {
+  .main-page {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  }
+
+  .main-page h1 {
+    font-size: 34px;
+    font-weight: 400;
+    font-style: bold;
+    text-align: center;
+  }
+
+  .main-page p {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: justify;
+  }
+}

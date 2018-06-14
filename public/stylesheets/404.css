@@ -57,11 +57,13 @@
 .error-404 {
   font-family: 'Lora';
   font-style: normal;
+}
+
+.error-404 h1 {
   font-size: 36px;
+  text-align: center;
 }
 
 .error-404 p {
-  font-family: 'Lora';
-  font-style: normal;
   font-size: 20px;
 }
