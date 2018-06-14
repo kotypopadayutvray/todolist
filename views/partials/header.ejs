@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% if (typeof title == 'undefined') { %>
+      <% title = record.title; %>
+    <% } %>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
