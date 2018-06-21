@@ -52,4 +52,18 @@ describe('models/user', function () {
                  .catch(error => { expect(error.errors[0].validatorKey).toEqual('isEmail') && expect(error.errors[0].path).toEqual('email') });
     });
   });
+
+  describe('find', function () {
+    it('find a user', function() {
+      return this.User.findById(1)
+                 .then(user => { expect(user.login).toEqual('kotypopadayutvra') });
+    });
+  });
+
+  describe('count', function () {
+    it('count of users', function() {
+      return this.User.count()
+                 .then(count => { expect(count).toEqual(1) });
+    });
+  });
 });
