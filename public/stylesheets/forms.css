@@ -1,0 +1,57 @@
+.signin-form {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #bfbfbf;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
+
+.signin-form input[type="text"],
+             input[type="email"],
+             input[type="submit"],
+             input[type="password"] {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.5%;
+  display: block;
+  width: 85%;
+  margin-bottom: 4%;
+}
+
+.signin-form h1 {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  margin: 4% 0;
+}
+
+.signin-form input[type="submit"] {
+  width: auto;
+  border: none;
+}
+
+.signin-form input[type="submit"]:hover {
+  background-color: #e1e1e1;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Change autocomplete style in browser */
+.signin-form input[type="text"]:-webkit-autofill,
+.signin-form input[type="text"]:-webkit-autofill:hover,
+.signin-form input[type="text"]:-webkit-autofill:focus,
+.signin-form input[type="email"]:-webkit-autofill,
+.signin-form input[type="email"]:-webkit-autofill:hover, 
+.signin-form input[type="email"]:-webkit-autofill:focus,
+.signin-form input[type="password"]:-webkit-autofill,
+.signin-form input[type="password"]:-webkit-autofill:hover, 
+.signin-form input[type="password"]:-webkit-autofill:focus {
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0 20px white inset;
+}

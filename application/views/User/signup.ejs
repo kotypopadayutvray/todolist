@@ -1,0 +1,16 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navigation.ejs %>
+    <div class="signin-form">
+      <form method="post" action="/user/signup">
+        <h1>
+          Registration
+        </h1>
+        <input required placeholder="Email" name="email" type="email" />
+        <input required placeholder="Password" name="password" type="password" />
+        <input required placeholder="Login" name="login" type="text" />
+        <input placeholder="First name" name="firstname" type="text" />
+        <input placeholder="Last name" name="lastname" type="text" />
+        <input type="submit" value="Sign Up" />
+      </form>
+    </div>
+<% include ../partials/footer.ejs %>

@@ -1,0 +1,15 @@
+<div class="nav-bar">
+  <img src="/images/todo.jpeg">
+  <% if (!authenticated) { %>
+    <a href="/user/signup">
+      Sign Up
+    </a>
+    <a href="/user/signin">
+      Sign In
+    </a>
+  <% } else { %>
+    <a href="/user/logout">
+      Log out
+    </a>
+  <% } %>
+</div>

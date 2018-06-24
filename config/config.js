@@ -4,7 +4,9 @@ module.exports = {
     dialect: 'mysql',
     username: 'todolist',
     password: 'qweRTY12',
-    database: 'todolist'
+    database: 'todolist',
+    passport_secret: 'Passport.js secret',
+    operatorsAliases: false
   },
   test: {
     host: '127.0.0.1',
@@ -14,4 +16,4 @@ module.exports = {
     database: 'test_todolist',
     logging: false
   }
-}
+};

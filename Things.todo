@@ -6,10 +6,14 @@ Things to do with test:
 --- ✄ -----------------------
 
 Things to do with user's data:
- ▫ Read how to store in the DB correctly user's password @created(18-06-20 12:05) @critical
+ ✔ Read how to store in the DB correctly user's password @created(18-06-20 12:05) @critical @done (18-06-26 23:40)
+ ✔ Change length of the password in the DB @created(18-06-26 23:43) @critical @done (18-06-29 17:56)
 
 --- ✄ -----------------------
 
 Things to do with migrations:
-  ▫ Create indecies for tables @created(18-06-20 12:09) @high
-  ▫ Change length of password field for users table @created(18-06-20 12:16)
+  ✔ Create indecies for tables @created(18-06-20 12:09) @high @done (18-06-26 23:41)
+  ✔ Change length of password field for users table @created(18-06-20 12:16) @done (18-06-29 17:56)
+
+Things to do with the CSS:
+  ▫ Create styles for forms @created(18-06-29 17:56)
