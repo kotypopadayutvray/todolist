@@ -15,5 +15,14 @@ Things to do with migrations:
   ✔ Create indecies for tables @created(18-06-20 12:09) @high @done (18-06-26 23:41)
   ✔ Change length of password field for users table @created(18-06-20 12:16) @done (18-06-29 17:56)
 
+--- ✄ -----------------------
+
 Things to do with the CSS:
-  ▫ Create styles for forms @created(18-06-29 17:56)
+  ✔ Create styles for forms @created(18-06-29 17:56) @done (18-07-02 14:39)
+
+--- ✄ -----------------------
+
+Things to do with user's todolists & tasks:
+  ▫ Create functions for CRUD operations with todolists and tasks @created(18-07-02 14:41)
+  ▫ Create general controller with actions for getting all todolists, one todolist, creating todolist, modifying todolist, adding tasks to todolists, etc. @created(18-07-02 14:47)
+
