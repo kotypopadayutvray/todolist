@@ -2,7 +2,7 @@ const viewPath = '../views/Tasks/';
 var viewDataHelper = require('./helpers/ViewData');
 var models = require('../models/models');
 
-exports.allTasks = function(request, response) {
+exports.todolists = function(request, response) {
   models.Todolist.findByUserId(request.user.id).then(todolists => {
     response.render(viewPath + 'all_tasks',
       Object.assign({},
@@ -20,10 +20,45 @@ exports.allTasks = function(request, response) {
   });
 };
 
-exports.task = function(request, response) {
+exports.todolist = function(request, response) {
   models.Todolist.findById(request.params.id).then(todolist => {
-    response.render(viewPath + 'task', { todolist: todolist });
+    todolist.getTasks().then(tasks => {
+      response.render(viewPath + 'todolist', { todolist: todolist,
+        tasks: tasks
+      });
+    }).catch(errors => {
+      console.log('Get todolist\'s task error. Info: ', errors);
+      response.render(viewPath + '../error.ejs', { errors: errors });
+    });
   }).catch(errors => {
-    response.render(viewPath + 'task', { errors: errors });
+    console.log('Get todolist error. Info: ', errors);
+    response.render(viewPath + '../error.ejs', { errors: errors });
   });
+};
+
+exports.createTodolist = function(request, response) {
+  let todolistData = {
+    name: request.body.name,
+    end_time: request.body.end_time,
+    UserId: request.user.id
+  };
+  models.Todolist.create(todolistData).then(todolist => {
+    response.redirect('/tasks/todolist/' + todolist.id);
+  }).catch(errors => {
+    console.log('Get todolist error. Info: ', errors);
+    response.render(viewPath + '../error.ejs', { errors: errors });
+  });
+};
+
+exports.updateTodolist = function(request, response) {
+  models.Todolist.create(todolistData).then(todolist => {
+    response.redirect('/tasks/todolist/' + todolist.id);
+  }).catch(errors => {
+    console.log('Get todolist error. Info: ', errors);
+    response.render(viewPath + '../error.ejs', { errors: errors });
+  });
+};
+
+exports.deleteTodolist = function(request, response) {
+
 };
