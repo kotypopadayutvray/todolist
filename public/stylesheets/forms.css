@@ -1,4 +1,8 @@
-.signin-form {
+.signin-form,
+.edit-task,
+.create-task,
+.create-todolist,
+.edit-todolist {
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
@@ -9,9 +13,17 @@
 }
 
 .signin-form input[type="text"],
-             input[type="email"],
-             input[type="submit"],
-             input[type="password"] {
+.signin-form input[type="email"],
+.signin-form input[type="submit"],
+.signin-form input[type="password"],
+.edit-task input[type="text"],
+.edit-task input[type="submit"],
+.create-task input[type="text"],
+.create-task input[type="submit"],
+.create-todolist input[type="text"],
+.create-todolist input[type="submit"],
+.edit-todolist input[type="text"],
+.edit-todolist input[type="submit"] {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -21,9 +33,25 @@
   display: block;
   width: 85%;
   margin-bottom: 4%;
+  color: #4c4c4c;
 }
 
-.signin-form h1 {
+.signin-form input[type="text"],
+.signin-form input[type="email"],
+.signin-form input[type="password"],
+.edit-task input[type="text"],
+.create-task input[type="text"],
+.create-todolist input[type="text"],
+.edit-todolist input[type="text"] {
+  border: 1px solid #bfbfbf;
+  border-radius: 5px;
+}
+
+.edit-task h1,
+.signin-form h1,
+.create-task h1,
+.edit-todolist h1,
+.create-todolist h1 {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 20px;
@@ -31,12 +59,20 @@
   margin: 4% 0;
 }
 
-.signin-form input[type="submit"] {
+.edit-task input[type="submit"],
+.signin-form input[type="submit"],
+.create-task input[type="submit"],
+.edit-todolist input[type="submit"],
+.create-todolist input[type="submit"] {
   width: auto;
   border: none;
+  background-color: #f2f2f2;
 }
 
-.signin-form input[type="submit"]:hover {
+.signin-form input[type="submit"]:hover,
+.edit-task input[type="submit"]:hover,
+.create-task input[type="submit"]:hover,
+.create-todolist input[type="submit"]:hover {
   background-color: #e1e1e1;
   border-radius: 5px;
   cursor: pointer;
@@ -51,7 +87,83 @@
 .signin-form input[type="email"]:-webkit-autofill:focus,
 .signin-form input[type="password"]:-webkit-autofill,
 .signin-form input[type="password"]:-webkit-autofill:hover, 
-.signin-form input[type="password"]:-webkit-autofill:focus {
+.signin-form input[type="password"]:-webkit-autofill:focus,
+.edit-task input[type="text"]:-webkit-autofill,
+.edit-task input[type="text"]:-webkit-autofill:hover,
+.edit-task input[type="text"]:-webkit-autofill:focus,
+.create-task input[type="text"]:-webkit-autofill,
+.create-task input[type="text"]:-webkit-autofill:hover,
+.create-task input[type="text"]:-webkit-autofill:focus,
+.edit-todolist input[type="text"]:-webkit-autofill,
+.edit-todolist input[type="text"]:-webkit-autofill:hover,
+.edit-todolist input[type="text"]:-webkit-autofill:focus
+.create-todolist input[type="text"]:-webkit-autofill,
+.create-todolist input[type="text"]:-webkit-autofill:hover,
+.create-todolist input[type="text"]:-webkit-autofill:focus {
   -webkit-text-fill-color: black;
   -webkit-box-shadow: 0 0 0 20px white inset;
+}
+
+.edit-task input[type=checkbox],
+.create-task input[type=checkbox] {
+  visibility: hidden;
+}
+
+.edit-task label,
+.create-task label {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  color: #4c4c4c;
+  cursor: pointer;
+}
+
+input[type="checkbox"].task-status-chkbox + label:before {
+  border: 1px solid #bfbfbf;
+  border-radius: 3px;
+  background: #fff;
+  content: "\00a0";
+  display: inline-block;
+  font-size: 20px;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  width: 20px;
+  height: 20px;
+  margin: 0 10px 0 0;
+  padding: 0;
+  vertical-align: top;
+}
+
+input[type="checkbox"]:checked.task-status-chkbox + label:before {
+  background: #fff;
+  color: #333;
+  content: "\2713";
+  text-align: center;
+}
+
+input[type="checkbox"]:checked.task-status-chkbox + label:after {
+  font-weight: bold;
+}
+
+input[type="checkbox"]:focus.task-status-chkbox + label::before {
+  outline: rgb(59, 153, 252) auto 5px;
+}
+
+.show-modal {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 4%;
+  color: #4c4c4c;
+  border: none;
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.show-modal:hover {
+  border: none;
+  background-color: #ececec;
+  cursor: pointer;
 }

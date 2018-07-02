@@ -1,0 +1,37 @@
+<button class="show-modal" id="show_modal">
+  Add new task
+</button>
+
+<div id="create_modal" class="form-modal">
+  <div class="modal-content">
+    <span id="close_modal" class="modal-close">&times;</span>
+    <form action="/tasks/task" method="post" name="task" class="create-task" id="create_task">
+      <h1>
+        Create new task!
+      </h1>
+      <input required placeholder="Name" name="name" type="text" />
+      <input required placeholder="Description" name="description" type="text" />
+      <input class="task-status-chkbox" id="task-status" name="status" type="checkbox"/>
+      <label for="task-status">Task ready?</label>
+      <input type="hidden" name="todolistId" value="<%= todolist.id %>"/>
+      <input type="submit" value="Create task">
+    </form>
+  </div>
+</div>
+
+<div id="edit_modal" class="form-modal">
+  <div class="modal-content">
+    <span id="close_modal" class="modal-close">&times;</span>
+    <form class="edit-task" id="edit_task" method="put">
+      <h1>
+        Editing of the task
+      </h1>
+      <input required placeholder="Name" name="name" type="text" />
+      <input required placeholder="Description" name="description" type="text" />
+      <input class="task-status-chkbox" id="edit-task-status" name="status" type="checkbox"/>
+      <label for="edit-task-status">Task ready?</label>
+      <input type="hidden" name="todolistId" value="<%= todolist.id %>"/>
+      <input type="submit" value="Update task">
+    </form>
+  </div>
+</div>

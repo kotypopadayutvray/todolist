@@ -1,0 +1,19 @@
+<tr class="task">
+  <td class="task-name">
+    <%= task.name %>
+  </td>
+  <td class="task-description">
+    <%= task.description %>
+  </td>
+  <td class="task-status">
+    <%= task.status %>
+  </td>
+  <td class="task-actions">
+    <a href="/tasks/task/update/<%= task.id %>" data-method="post" class="edit-task-btn">
+      edit
+    </a>
+    <a href="/tasks/task/<%= task.id %>" data-method="delete" class="delete-task-btn">
+      delete
+    </a>
+  </td>
+</tr>

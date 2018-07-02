@@ -1,0 +1,100 @@
+.todolists {
+  width: 50%;
+  margin: 25px auto;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+}
+
+.todolists tbody tr {
+  margin: 5px 0;
+}
+
+.todolists tbody a {
+  color: black;
+  text-decoration: none;
+}
+
+.todolists tbody tr:nth-child(odd) {
+  background-color: #e0e0e0;
+  transition: background-color 0.4s;
+}
+
+.todolists tbody tr {
+  transition: background-color 0.4s;
+}
+
+.todolists tbody tr:hover {
+  background-color: #ececec;
+}
+
+.todolist,
+.todolist-single {
+  margin: 10px 0;
+}
+
+.todolist-single {
+  font-size: 20px;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.todolist-single .todolist-name {
+  font-size: 22px;
+  font-weight: 300;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.todolist .todolist-end-time,
+.todolist-single .todolist-end-time {
+  border: none;
+  cursor: default !important;
+  background-color: transparent;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+.todolist .todolist-end-time {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.todolist-single .todolist-end-time {
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.todolist-sinlge-description {
+  width: 50%;
+  margin: 10px auto;
+  text-align: left;
+}
+
+.tasks {
+  font-size: 20px;
+  border-collapse: collapse;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  padding: 8px;
+  margin: 15px auto;
+}
+
+.tasks td,
+.tasks th {
+  padding: 8px;
+  display: table-cell;
+  border-bottom: 1px solid #ddd;
+}
+
+.tasks th {
+  font-weight: 400;
+}
+
+.tasks td {
+  font-weight: 300;
+}
