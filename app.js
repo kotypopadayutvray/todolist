@@ -9,6 +9,7 @@ var sequelize = require('sequelize');
 var createError = require('http-errors');
 var cookieParser = require('cookie-parser');
 var mainPageRouter = require('./routes/MainPageRouter');
+var tasksRouter = require('./routes/TasksRouter');
 require('./config/passport/passport.js')(passport, User);
 var userRouter = require('./routes/UserRouter')(passport);
 
@@ -39,6 +40,7 @@ app.use(passport.session());
 // Set router 
 app.use('/', mainPageRouter);
 app.use('/user/', userRouter);
+app.use('/tasks/', tasksRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var tasksController = require('../application/controllers/UserController');
+var tasksController = require('../application/controllers/TasksController');
 
 router.get('/', tasksController.todolists);
 router.put('/task/:id', tasksController.updateTask);

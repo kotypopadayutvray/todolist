@@ -3,8 +3,13 @@ var viewDataHelper = require('./helpers/ViewData');
 var models = require('../models/models');
 
 exports.todolists = function(request, response) {
-  models.Todolist.findByUserId(request.user.id).then(todolists => {
-    response.render(viewPath + 'all_tasks',
+  console.log(request);
+  models.Todolist.findAll({
+    where: { 
+      UserId: request.user.id
+    }
+  }).then(todolists => {
+    response.render(viewPath + 'todolists',
       Object.assign({},
         viewDataHelper.partialLocals('Your tasks', request),
         { todolists: todolists }

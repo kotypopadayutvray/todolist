@@ -26,4 +26,5 @@ Things to do with user's todolists & tasks:
   ✔ Create functions for CRUD operations with todolists and tasks @created(18-07-02 14:41) @done (18-07-03 19:11)
   ✔ Create general controller with actions for getting all todolists, one todolist, creating todolist, modifying todolist, adding tasks to todolists, etc. @created(18-07-02 14:47) @done (18-07-03 19:11)
   ▫ Send response in json on tasks CRUD operation @created(18-07-03 19:12) @critical
+  ☐ Control access for nonauthorized user for tasks controller @created(18-07-03 22:10) @critical
 
