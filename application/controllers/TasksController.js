@@ -75,3 +75,45 @@ exports.deleteTodolist = function(request, response) {
     response.render(viewPath + '../error.ejs', { errors: errors });
   });
 };
+
+exports.createTask = function(request, response) {
+  let taskData = {
+    name: request.body.name,
+    description: request.body.description,
+    status: request.body.status || false,
+    TodolistId: request.body.id
+  };
+  models.Task.create(taskData).then(() => {
+    response.redirect('/tasks/todolist/' + request.body.id);
+  }).catch(errors => {
+    console.log('Create task error. Info: ', errors);
+    response.render(viewPath + '../error.ejs', { errors: errors });
+  });
+};
+
+exports.updateTask = function(request, response) {
+  models.Task.findById(request.params.id).then(task => {
+    task.name = request.params.name;
+    task.description = request.params.description;
+    task.status = request.params.status;
+    task.save().then(() => {
+      response.redirect('/tasks/todolist/' + task.TodolistId);
+    }).catch(errors => {
+      console.log('Save task error. Info: ', errors);
+      response.render(viewPath + '../error.ejs', { errors: errors });
+    });
+  }).catch(errors => {
+    console.log('Update task error. Info: ', errors);
+    response.render(viewPath + '../error.ejs', { errors: errors });
+  });
+};
+
+exports.deleteTask = function(request, response) {
+  models.Task.findById(request.params.id).then(task => {
+    task.destroy();
+    response.redirect('/tasks/todolist/' + task.id);
+  }).catch(errors => {
+    console.log('Get task error. Info: ', errors);
+    response.render(viewPath + '../error.ejs', { errors: errors });
+  });
+};
