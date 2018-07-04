@@ -9,9 +9,9 @@
 }
 
 .signin-form input[type="text"],
-             input[type="email"],
-             input[type="submit"],
-             input[type="password"] {
+.signin-form input[type="email"],
+.signin-form input[type="submit"],
+.signin-form input[type="password"] {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;

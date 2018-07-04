@@ -28,9 +28,15 @@ exports.todolists = function(request, response) {
 exports.todolist = function(request, response) {
   models.Todolist.findById(request.params.id).then(todolist => {
     todolist.getTasks().then(tasks => {
-      response.render(viewPath + 'todolist', { todolist: todolist,
-        tasks: tasks
-      });
+      response.render(viewPath + 'todolist',
+        Object.assign({},
+          viewDataHelper.partialLocals('Task: ' + todolist.name, request),
+          {
+            todolist: todolist,
+            tasks: tasks
+          }
+        )
+      );
     }).catch(errors => {
       console.log('Get todolist\'s task error. Info: ', errors);
       response.render(viewPath + '../error.ejs', { errors: errors });
