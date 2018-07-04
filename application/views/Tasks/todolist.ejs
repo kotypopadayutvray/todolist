@@ -1,8 +1,16 @@
-<div class="todolist">
-  <p class="todolist-name">
-    <%= todolist.name %>
-  </p>
-  <p class="todolist-end-time">
-    <%= todolist.end_time %>
-  </p>
+<% include ../partials/header.ejs %>
+<% include ../partials/navigation.ejs %>
+  <div class="todolist">
+    <p class="todolist-name">
+      <%= todolist.name %>
+    </p>
+    <p class="todolist-end-time">
+      <%= todolist.end_time %>
+    </p>
+    <div class="tasks">
+      <% for(task in tasks) { %>
+        <%- include ./_task.ejs %>
+      <% } %>
+    </div>
 </div>
+<% include ../partials/footer.ejs %>
