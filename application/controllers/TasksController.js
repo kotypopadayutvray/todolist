@@ -3,7 +3,6 @@ var viewDataHelper = require('./helpers/ViewData');
 var models = require('../models/models');
 
 exports.todolists = function(request, response) {
-  console.log(request);
   models.Todolist.findAll({
     where: { 
       UserId: request.user.id

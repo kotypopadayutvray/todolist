@@ -1,6 +1,6 @@
 <% include ../partials/header.ejs %>
 <% include ../partials/navigation.ejs %>
-<% for(todolist in todolists) { %>
+<% for(index in todolists) { %>
   <%- include ./_todolist.ejs %>
 <% } %>
 <% include ./create_todolist_form.ejs %>

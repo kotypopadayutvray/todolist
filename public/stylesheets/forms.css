@@ -21,6 +21,14 @@
   display: block;
   width: 85%;
   margin-bottom: 4%;
+  color: #4c4c4c;
+}
+
+.signin-form input[type="text"],
+.signin-form input[type="email"],
+.signin-form input[type="password"] {
+  border: 1px solid #bfbfbf;
+  border-radius: 5px;
 }
 
 .signin-form h1 {
@@ -34,6 +42,7 @@
 .signin-form input[type="submit"] {
   width: auto;
   border: none;
+  background-color: #f2f2f2;
 }
 
 .signin-form input[type="submit"]:hover {
