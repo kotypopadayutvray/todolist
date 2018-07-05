@@ -1,16 +1,15 @@
 <% include ../partials/header.ejs %>
 <% include ../partials/navigation.ejs %>
   <div class="todolist">
-    <p class="todolist-name">
+    <span class="todolist-name">
       <%= todolist.name %>
-    </p>
-    <p class="todolist-end-time">
-      <%= todolist.end_time %>
-    </p>
+    </span>
+    <input class="todolist-end-time" type="text" value="<%= todolist.end_time %>"/>
     <div class="tasks">
-      <% for(task in tasks) { %>
+      <% for(let task of tasks) { %>
         <%- include ./_task.ejs %>
       <% } %>
     </div>
 </div>
+<% include ./create_task_form.ejs %>
 <% include ../partials/footer.ejs %>

@@ -1,8 +1,8 @@
 <div class="todolist">
   <span class="todolist-name">
-    <a href="/tasks/todolist/<%= todolists[index].id %>">
-      <%= todolists[index].name %>
+    <a href="/tasks/todolist/<%= todolist.id %>">
+      <%= todolist.name %>
     </a>
   </span>
-  <input type="text" class="todolist-end-time" value="<%= todolists[index].end_time %>" readonly/>
+  <input type="text" class="todolist-end-time" value="<%= todolist.end_time %>" readonly/>
 </div>
