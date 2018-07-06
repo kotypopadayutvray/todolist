@@ -1,7 +1,7 @@
 window.createTaskBtnEventHandler = function() {
-  var createTaskBtn = document.getElementById('create_task');
-  if (createTaskBtn) {
-    createTaskBtn.onclick = function(event) {
+  var form = document.getElementById('create_task');
+  if (form) {
+    form.onsubmit = function(event) {
       event.preventDefault();
       var xhr = new XMLHttpRequest();
       xhr.open('POST', '/tasks/task', true);
@@ -11,11 +11,9 @@ window.createTaskBtnEventHandler = function() {
         if (xhr.status != 200) {
           alert(xhr.status + ': ' + xhr.statusText);
         } else {
-          console.log(xhr);
           alert(xhr.responseText);
         }
       };
-      var form = document.forms[0];
       var data = {};
       data['name'] = form.name.value;
       data['id'] = form.todolistId.value;

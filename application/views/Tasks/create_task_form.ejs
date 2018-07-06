@@ -1,7 +1,20 @@
-<form action="/tasks/task" method="post" name="task">
-  <input required placeholder="Name" name="name" type="text" />
-  <input required placeholder="Description" name="description" type="text" />
-  <input name="status" type="checkbox" value="ready"/>
-  <input type="hidden" name="todolistId" value="<%= todolist.id %>"/>
-  <input type="submit" id="create_task" value="Create task">
-</form>
+<button id="show_modal">
+  Add new task
+</button>
+
+<div id="form_modal" class="form-modal">
+  <div class="modal-content">
+    <span id="close_modal" class="close">&times;</span>
+    <form action="/tasks/task" method="post" name="task" class="create-task" id="create_task">
+      <h1>
+        Create new task!
+      </h1>
+      <input required placeholder="Name" name="name" type="text" />
+      <input required placeholder="Description" name="description" type="text" />
+      <input id="task-status" name="status" type="checkbox"/>
+      <label for="task-status">Task ready?</label>
+      <input type="hidden" name="todolistId" value="<%= todolist.id %>"/>
+      <input type="submit" value="Create task">
+    </form>
+  </div>
+</div>
