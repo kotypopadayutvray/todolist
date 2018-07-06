@@ -1,7 +1,9 @@
 <% include ../partials/header.ejs %>
 <% include ../partials/navigation.ejs %>
-<% for(let todolist of todolists) { %>
-  <%- include ./_todolist.ejs %>
-<% } %>
+<div class="todolists">
+  <% for(let todolist of todolists) { %>
+    <%- include ./_todolist.ejs %>
+  <% } %>
+</div>
 <% include ./create_todolist_form.ejs %>
 <% include ../partials/footer.ejs %>

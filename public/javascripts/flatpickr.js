@@ -10,14 +10,12 @@ window.flatpickrInit = function() {
   }
   var todolistEndTimes = document.getElementsByClassName('todolist-end-time');
   if (todolistEndTimes.length) {
-    for (var i in todolistEndTimes) {
-      flatpickr(todolistEndTimes[i], {
-        enableTime: true,
-        altInput: true,
-        altFormat: 'F j, Y H:i',
-        dateFormat: 'H:i Y-m-d',
-        clickOpens: false
-      });
-    }
+    flatpickr('.todolist-end-time', {
+      enableTime: true,
+      altInput: true,
+      altFormat: 'F j, Y H:i',
+      dateFormat: 'H:i Y-m-d',
+      clickOpens: false
+    });
   }
 };

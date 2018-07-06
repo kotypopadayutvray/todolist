@@ -1,7 +1,7 @@
-<form action="/tasks/task" method="post">
+<form action="/tasks/task" method="post" name="task">
   <input required placeholder="Name" name="name" type="text" />
   <input required placeholder="Description" name="description" type="text" />
   <input name="status" type="checkbox" value="ready"/>
-  <input type="hidden" value="<%= todolist.id %>"/>
+  <input type="hidden" name="todolistId" value="<%= todolist.id %>"/>
   <input type="submit" id="create_task" value="Create task">
 </form>

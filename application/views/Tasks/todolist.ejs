@@ -1,15 +1,29 @@
 <% include ../partials/header.ejs %>
 <% include ../partials/navigation.ejs %>
-  <div class="todolist">
-    <span class="todolist-name">
-      <%= todolist.name %>
-    </span>
-    <input class="todolist-end-time" type="text" value="<%= todolist.end_time %>"/>
-    <div class="tasks">
+  <div class="todolist-single">
+    <div class="todolist-sinlge-description">
+      <div>
+        Todolist name:
+        <span class="todolist-name">
+          <%= todolist.name %>
+        </span>
+      </div>
+      <div>
+        Todolist end time:
+        <input class="todolist-end-time" type="text" value="<%= todolist.end_time %>"/>
+      </div>
+    </div>
+    Below, you can see tasks of this todolist.
+    <table class="tasks">
+      <tr>
+        <th> Name </th>
+        <th> Description </th>
+        <th> Status </th>
+      </tr>
       <% for(let task of tasks) { %>
         <%- include ./_task.ejs %>
       <% } %>
-    </div>
-</div>
+    </table>
+  </div>
 <% include ./create_task_form.ejs %>
 <% include ../partials/footer.ejs %>

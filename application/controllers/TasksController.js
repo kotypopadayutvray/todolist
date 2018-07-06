@@ -90,7 +90,7 @@ exports.createTask = function(request, response) {
   let taskData = {
     name: request.body.name,
     description: request.body.description,
-    status: request.body.status || false,
+    status: request.body.status * 1,
     TodolistId: request.body.id
   };
   models.Task.create(taskData).then(() => {
