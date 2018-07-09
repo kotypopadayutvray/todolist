@@ -53,7 +53,7 @@ exports.createTodolist = function(request, response) {
     UserId: request.user.id
   };
   models.Todolist.create(todolistData).then(todolist => {
-    response.redirect('/tasks/todolist/' + todolist.id);
+    response.render(viewPath + '_todolist.ejs', { todolist: todolist });
   }).catch(errors => {
     console.log('Get todolist error. Info: ', errors);
     response.render(viewPath + '../error.ejs', { errors: errors });
