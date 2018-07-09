@@ -11,7 +11,14 @@ window.createTaskBtnEventHandler = function() {
         if (xhr.status != 200) {
           alert(xhr.status + ': ' + xhr.statusText);
         } else {
-          alert(xhr.responseText);
+          var table = document.getElementsByClassName('tasks')[0];
+          var newRow = table.insertRow();
+          newRow.innerHTML = xhr.responseText;
+          // Do checking if modal window is open
+          var closeBtn = document.getElementById('close_modal');
+          if (closeBtn) {
+            closeBtn.click();
+          }
         }
       };
       var data = {};
@@ -25,7 +32,6 @@ window.createTaskBtnEventHandler = function() {
         params.push(keys[i] + '=' + data[keys[i]]);
       }
       params = params.join('&');
-      console.log(data);
       xhr.send(params);
     };
   }

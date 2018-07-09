@@ -1,5 +1,17 @@
-<form action="/tasks/todolist" method="post">
-  <input required placeholder="Name" name="name" type="text" />
-  <input placeholder="Date" name="end_time" type="text" id="end_time_input" />
-  <input type="submit" id="create_todolist" value="Create todolist">
-</form>
+<button class="show-modal" id="show_modal">
+  Add new todolist
+</button>
+
+<div id="form_modal" class="form-modal">
+  <div class="modal-content">
+    <span id="close_modal" class="modal-close">&times;</span>
+    <form action="/tasks/todolist" method="post" name="task" class="create-todolist" id="create_todolist">
+      <h1>
+        Create new todolist!
+      </h1>
+      <input required placeholder="Name" name="name" type="text" />
+      <input placeholder="Date" name="end_time" type="text" id="end_time_input" />
+      <input type="submit" id="create_todolist" value="Create todolist">
+    </form>
+  </div>
+</div>

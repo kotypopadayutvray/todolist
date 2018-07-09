@@ -93,8 +93,8 @@ exports.createTask = function(request, response) {
     status: request.body.status * 1,
     TodolistId: request.body.id
   };
-  models.Task.create(taskData).then(() => {
-    response.redirect('/tasks/todolist/' + request.body.id);
+  models.Task.create(taskData).then((task) => {
+    response.render(viewPath + '_task.ejs', { task: task });
   }).catch(errors => {
     console.log('Create task error. Info: ', errors);
     response.render(viewPath + '../error.ejs', { errors: errors });
