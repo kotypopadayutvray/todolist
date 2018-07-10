@@ -65,7 +65,7 @@ exports.updateTodolist = function(request, response) {
     todolist.name = request.params.name;
     todolist.end_time = request.params.name;
     todolist.save().then(() => {
-      response.json({ msg: 'ok' });
+      response.render(viewPath + '_todolist.ejs', { todolist: todolist });
     }).catch(errors => {
       console.log('Save todolist error. Info: ', errors);
       response.render(viewPath + '../error.ejs', { errors: errors });
@@ -107,7 +107,7 @@ exports.updateTask = function(request, response) {
     task.description = request.params.description;
     task.status = request.params.status;
     task.save().then(() => {
-      response.json({ msg: 'ok' });
+      response.render(viewPath + '_task.ejs', { task: task });
     }).catch(errors => {
       console.log('Save task error. Info: ', errors);
       response.render(viewPath + '../error.ejs', { errors: errors });
