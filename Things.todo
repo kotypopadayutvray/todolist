@@ -27,4 +27,5 @@ Things to do with user's todolists & tasks:
   ✔ Create general controller with actions for getting all todolists, one todolist, creating todolist, modifying todolist, adding tasks to todolists, etc. @created(18-07-02 14:47) @done (18-07-03 19:11)
   ✔ Control access for nonauthorized user for tasks controller @created(18-07-03 22:10) @critical @done (18-07-04 18:31)
   ▫ Do modal forms more universal (for editting tasks and todolists) @created(18-07-09 17:33)
+  ▫ Add values from edittin tasks and todolists on form @created(18-07-10 18:20)
 

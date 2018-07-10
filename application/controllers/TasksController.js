@@ -65,7 +65,7 @@ exports.updateTodolist = function(request, response) {
     todolist.name = request.params.name;
     todolist.end_time = request.params.name;
     todolist.save().then(() => {
-      response.redirect('/tasks/todolist/' + todolist.id);
+      response.json({ msg: 'ok' });
     }).catch(errors => {
       console.log('Save todolist error. Info: ', errors);
       response.render(viewPath + '../error.ejs', { errors: errors });
@@ -79,7 +79,7 @@ exports.updateTodolist = function(request, response) {
 exports.deleteTodolist = function(request, response) {
   models.Todolist.findById(request.params.id).then(todolist => {
     todolist.destroy();
-    response.redirect('/tasks/todolists/');
+    response.json({ msg: 'ok' });
   }).catch(errors => {
     console.log('Get todolist error. Info: ', errors);
     response.render(viewPath + '../error.ejs', { errors: errors });
@@ -107,7 +107,7 @@ exports.updateTask = function(request, response) {
     task.description = request.params.description;
     task.status = request.params.status;
     task.save().then(() => {
-      response.redirect('/tasks/todolist/' + task.TodolistId);
+      response.json({ msg: 'ok' });
     }).catch(errors => {
       console.log('Save task error. Info: ', errors);
       response.render(viewPath + '../error.ejs', { errors: errors });
@@ -121,7 +121,7 @@ exports.updateTask = function(request, response) {
 exports.deleteTask = function(request, response) {
   models.Task.findById(request.params.id).then(task => {
     task.destroy();
-    response.redirect('/tasks/todolist/' + task.id);
+    response.json({ msg: 'ok' });
   }).catch(errors => {
     console.log('Get task error. Info: ', errors);
     response.render(viewPath + '../error.ejs', { errors: errors });

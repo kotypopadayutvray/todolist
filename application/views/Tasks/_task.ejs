@@ -8,4 +8,12 @@
   <td class="task-status">
     <%= task.status %>
   </td>
+  <td class="task-actions">
+    <a href="/tasks/task/<%= task.id %>" data-method="put" class="edit-task">
+      edit
+    </a>
+    <a href="/tasks/task/<%= task.id %>" data-method="delete" class="delete-task">
+      delete
+    </a>
+  </td>
 </tr>

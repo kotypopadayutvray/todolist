@@ -1,4 +1,4 @@
-window.createTaskBtnEventHandler = function() {
+window.createBtnEventHandler = function() {
   var createTaskForm = document.getElementById('create_task');
   if (createTaskForm) {
     createTaskForm.onsubmit = function(event) {
@@ -61,6 +61,31 @@ window.createTaskBtnEventHandler = function() {
   }
 };
 
+window.setActionsEventListeners = function() {
+  var editTaskBtns = Array.from(document.getElementsByClassName('edit-task'));
+  var deleteTaskBtns = Array.from(document.getElementsByClassName('delete-task'));
+  var editTodolistBtns = Array.from(document.getElementsByClassName('edit-todolist'));
+  var deleteTodolistBtns = Array.from(document.getElementsByClassName('delete-todolist'));
+  var btns = editTaskBtns.concat(deleteTaskBtns, editTodolistBtns, deleteTodolistBtns);
+  for (var i in btns) {
+    btns[i].onclick = function(event) {
+      event.preventDefault();
+      var ajaxParams = {};
+      ajaxParams.url = this.href;
+      ajaxParams.params = null;
+      ajaxParams.method = this.dataset.method;
+      ajaxParams.responseType = 'json';
+      var _this = this;
+      sendAJAX(ajaxParams, function(responseText) {
+        if (responseText == 'ok') {
+          console.log(_this);
+          console.log(_this.parentElement);
+        }
+      });
+    };
+  }
+};
+
 function submitListener(event, callback) {
   event.preventDefault();
   callback();
@@ -71,12 +96,18 @@ function sendAJAX(ajaxParams = {}, callback) {
     return false;
   }
   var xhr = new XMLHttpRequest();
+  if (ajaxParams.responseType) {
+    xhr.responseType = ajaxParams.responseType;
+  }
   xhr.open(ajaxParams.method.toUpperCase(),
     ajaxParams.url,
     true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function() {
     if (xhr.readyState != 4) return;
+    console.log(xhr);
+    console.log(xhr.response);
+    console.log(xhr.responseText);
     if (xhr.status != 200) {
       alert(xhr.status + ': ' + xhr.statusText);
     } else {
