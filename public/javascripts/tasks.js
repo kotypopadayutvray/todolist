@@ -22,6 +22,7 @@ window.createBtnEventHandler = function() {
           var table = document.getElementsByClassName('tasks')[0];
           var newRow = table.insertRow();
           newRow.innerHTML = responseText;
+          addEventListenersToTaskActions(newRow);
           var closeBtn = document.getElementById('close_modal');
           if (closeBtn) {
             closeBtn.click();
@@ -51,6 +52,8 @@ window.createBtnEventHandler = function() {
           var table = document.getElementsByClassName('todolists')[0];
           var newRow = table.insertRow();
           newRow.innerHTML = responseText;
+          var newColumns = newRow.childNodes;
+          addEventListenersToTodolistActions(newRow);
           var closeBtn = document.getElementById('close_modal');
           if (closeBtn) {
             closeBtn.click();
@@ -61,27 +64,88 @@ window.createBtnEventHandler = function() {
   }
 };
 
-window.setActionsEventListeners = function() {
-  var editTaskBtns = Array.from(document.getElementsByClassName('edit-task'));
+function addEventListenersToTaskActions(newRow) {
+  var newColumns = newRow.childNodes;
+  for (var i in newColumns) {
+    if (newColumns[i].className == 'task-actions') {
+      for (var j in newColumns[i].childNodes) {
+        // Устанавливаем обработчики события на вновь поступившие кнопки
+        var link = newColumns[i].childNodes[j];
+        if (link.className == 'delete-task') {
+          setDeleteActionEventListener(newColumns[i].childNodes[j]);
+        } // else if (link.className == 'delete-todolist') {
+
+        // }
+      }
+      break;
+    }
+  }
+}
+
+function addEventListenersToTodolistActions(newRow) {
+  var newColumns = newRow.childNodes;
+  for (var i in newColumns) {
+    if (newColumns[i].className == 'todolist-actions') {
+      for (var j in newColumns[i].childNodes) {
+        // Устанавливаем обработчики события на вновь поступившие кнопки
+        var link = newColumns[i].childNodes[j];
+        if (link.className == 'delete-todolist') {
+          setDeleteActionEventListener(newColumns[i].childNodes[j]);
+        } // else if (link.className == 'delete-todolist') {
+
+        // }
+      }
+      break;
+    }
+  }
+}
+
+window.setDeleteActionEventListeners = function() {
   var deleteTaskBtns = Array.from(document.getElementsByClassName('delete-task'));
-  var editTodolistBtns = Array.from(document.getElementsByClassName('edit-todolist'));
   var deleteTodolistBtns = Array.from(document.getElementsByClassName('delete-todolist'));
-  var btns = editTaskBtns.concat(deleteTaskBtns, editTodolistBtns, deleteTodolistBtns);
+  var btns = deleteTaskBtns.concat(deleteTodolistBtns);
   for (var i in btns) {
-    btns[i].onclick = function(event) {
+    setDeleteActionEventListener(btns[i]);
+  }
+};
+
+function setDeleteActionEventListener(btn) {
+  btn.onclick = function(event) {
+    event.preventDefault();
+    var ajaxParams = {};
+    ajaxParams.url = this.href;
+    ajaxParams.params = null;
+    ajaxParams.method = this.dataset.method;
+    ajaxParams.responseType = 'json';
+    var _this = this;
+    sendAJAX(ajaxParams, function(response) {
+      if (response.msg == 'ok') {
+        var row = _this.parentElement.parentElement;
+        row.parentNode.removeChild(row);
+      }
+    });
+  };
+}
+
+window.setEditActionEventListeners = function() {
+  var editTaskBtns = document.getElementsByClassName('edit-task');
+  for (var i in editTaskBtns) {
+    editTaskBtns[i].onclick = function(event) {
       event.preventDefault();
-      var ajaxParams = {};
-      ajaxParams.url = this.href;
-      ajaxParams.params = null;
-      ajaxParams.method = this.dataset.method;
-      ajaxParams.responseType = 'json';
-      var _this = this;
-      sendAJAX(ajaxParams, function(responseText) {
-        if (responseText == 'ok') {
-          console.log(_this);
-          console.log(_this.parentElement);
-        }
-      });
+      var form = document.getElementById('edit_task');
+      form.action = this.href;
+      // form.name.value = ;
+      form.todolistId.value = this.dataset.todolist_id;
+      // form.description.value = ;
+    };
+  }
+  var editTodolistBtns = document.getElementsByClassName('edit-todolist');
+  for (i in editTodolistBtns) {
+    editTodolistBtns[i].onclick = function(event) {
+      event.preventDefault();
+      var form = document.getElementById('edit_todolist');
+      // form.name.value = ;
+      // form.end_time.value = ;
     };
   }
 };
@@ -105,14 +169,15 @@ function sendAJAX(ajaxParams = {}, callback) {
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function() {
     if (xhr.readyState != 4) return;
-    console.log(xhr);
-    console.log(xhr.response);
-    console.log(xhr.responseText);
     if (xhr.status != 200) {
       alert(xhr.status + ': ' + xhr.statusText);
     } else {
       if (callback) {
-        callback(xhr.responseText);
+        if (ajaxParams.responseType === 'json') {
+          callback(xhr.response);
+        } else {
+          callback(xhr.responseText);
+        }
       }
     }
   };

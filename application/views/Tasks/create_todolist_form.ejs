@@ -2,9 +2,9 @@
   Add new todolist
 </button>
 
-<div id="form_modal" class="form-modal">
+<div id="create_modal" class="form-modal">
   <div class="modal-content">
-    <span id="close_modal" class="modal-close">&times;</span>
+    <span class="modal-close">&times;</span>
     <form action="/tasks/todolist" method="post" name="task" class="create-todolist" id="create_todolist">
       <h1>
         Create new todolist!
@@ -12,6 +12,20 @@
       <input required placeholder="Name" name="name" type="text" />
       <input placeholder="Date" name="end_time" type="text" id="end_time_input" />
       <input type="submit" id="create_todolist" value="Create todolist">
+    </form>
+  </div>
+</div>
+
+<div class="form-modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <form class="edit-todolist" id="edit_todolist">
+      <h1>
+        Editting of the todolist
+      </h1>
+      <input required placeholder="Name" name="name" type="text" />
+      <input placeholder="Date" name="end_time" type="text" id="end_time_input" />
+      <input type="submit" id="edit_todolist" value="Update todolist">
     </form>
   </div>
 </div>
