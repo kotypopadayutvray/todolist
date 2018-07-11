@@ -8,10 +8,10 @@
     <input type="text" class="todolist-end-time" value="<%= todolist.end_time %>" readonly/>
   </td>
   <td class="todolist-actions">
-    <a href="/tasks/todolist/<%= todolist.id %>" data-method="put" class="edit-todolist">
+    <a href="/tasks/todolist/update/<%= todolist.id %>" data-method="post" class="edit-todolist-btn">
       edit
     </a>
-    <a href="/tasks/todolist/<%= todolist.id %>" data-method="delete" class="delete-todolist">
+    <a href="/tasks/todolist/<%= todolist.id %>" data-method="delete" class="delete-todolist-btn">
       delete
     </a>
   </td>

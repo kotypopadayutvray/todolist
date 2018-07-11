@@ -26,6 +26,9 @@ Things to do with user's todolists & tasks:
   ✔ Create functions for CRUD operations with todolists and tasks @created(18-07-02 14:41) @done (18-07-03 19:11)
   ✔ Create general controller with actions for getting all todolists, one todolist, creating todolist, modifying todolist, adding tasks to todolists, etc. @created(18-07-02 14:47) @done (18-07-03 19:11)
   ✔ Control access for nonauthorized user for tasks controller @created(18-07-03 22:10) @critical @done (18-07-04 18:31)
-  ▫ Do modal forms more universal (for editting tasks and todolists) @created(18-07-09 17:33)
-  ▫ Add values from edittin tasks and todolists on form @created(18-07-10 18:20)
+  ✔ Do modal forms more universal (for editting tasks and todolists) @created(18-07-09 17:33) @done (18-07-11 11:53)
+  ✔ Add values from edittin tasks and todolists on form @created(18-07-10 18:20) @done (18-07-11 11:53)
+  ▫ Create universal submit listeners for forms @created(18-07-11 11:54)
+  ✔ Understand what is wrong with flatpickr.js on todolists page @created(18-07-11 11:55) @critical @done (18-07-11 12:12)
+  ✔ Format time on server side @created(18-07-11 12:13) @done (18-07-11 12:41)
 

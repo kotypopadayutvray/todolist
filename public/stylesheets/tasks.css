@@ -4,10 +4,31 @@
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
 }
 
-.todolists a {
+.todolists tbody tr {
+  margin: 5px 0;
+}
+
+.todolists tbody a {
+  color: black;
   text-decoration: none;
+}
+
+.todolists tbody tr:nth-child(odd) {
+  background-color: #e0e0e0;
+  transition: background-color 0.4s;
+}
+
+.todolists tbody tr {
+  transition: background-color 0.4s;
+}
+
+.todolists tbody tr:hover {
+  background-color: #ececec;
 }
 
 .todolist,
@@ -35,6 +56,7 @@
 .todolist-single .todolist-end-time {
   border: none;
   cursor: default !important;
+  background-color: transparent;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 

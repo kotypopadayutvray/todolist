@@ -10,13 +10,13 @@
         Create new todolist!
       </h1>
       <input required placeholder="Name" name="name" type="text" />
-      <input placeholder="Date" name="end_time" type="text" id="end_time_input" />
+      <input required placeholder="Date" name="end_time" type="text" id="end_time_input" class="end_time_input" />
       <input type="submit" id="create_todolist" value="Create todolist">
     </form>
   </div>
 </div>
 
-<div class="form-modal">
+<div id="edit_modal" class="form-modal">
   <div class="modal-content">
     <span class="modal-close">&times;</span>
     <form class="edit-todolist" id="edit_todolist">
@@ -24,7 +24,7 @@
         Editting of the todolist
       </h1>
       <input required placeholder="Name" name="name" type="text" />
-      <input placeholder="Date" name="end_time" type="text" id="end_time_input" />
+      <input required placeholder="Date" name="end_time" type="text" class="end_time_input" />
       <input type="submit" id="edit_todolist" value="Update todolist">
     </form>
   </div>

@@ -9,10 +9,10 @@
     <%= task.status %>
   </td>
   <td class="task-actions">
-    <a href="/tasks/task/<%= task.id %>" data-method="put" class="edit-task">
+    <a href="/tasks/task/update/<%= task.id %>" data-method="post" class="edit-task-btn">
       edit
     </a>
-    <a href="/tasks/task/<%= task.id %>" data-method="delete" class="delete-task">
+    <a href="/tasks/task/<%= task.id %>" data-method="delete" class="delete-task-btn">
       delete
     </a>
   </td>

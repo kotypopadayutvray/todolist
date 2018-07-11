@@ -2,67 +2,121 @@ window.createBtnEventHandler = function() {
   var createTaskForm = document.getElementById('create_task');
   if (createTaskForm) {
     createTaskForm.onsubmit = function(event) {
-      submitListener(event, function() {
-        var data = {};
-        data['name'] = createTaskForm.name.value;
-        data['id'] = createTaskForm.todolistId.value;
-        data['status'] = createTaskForm.status.checked ? 1 : 0;
-        data['description'] = createTaskForm.description.value;
-        var keys = Object.keys(data);
-        var params = [];
-        for (var i in keys) {
-          params.push(keys[i] + '=' + data[keys[i]]);
-        }
-        params = params.join('&');
-        var ajaxParams = {};
-        ajaxParams.url = createTaskForm.action;
-        ajaxParams.params = params;
-        ajaxParams.method = createTaskForm.method;
-        sendAJAX(ajaxParams, function(responseText) {
+      submitListener(event, taskFormSubmit, createTaskForm, 
+        function(responseText) {
           var table = document.getElementsByClassName('tasks')[0];
           var newRow = table.insertRow();
           newRow.innerHTML = responseText;
+          newRow.className = newRow.previousElementSibling.className;
           addEventListenersToTaskActions(newRow);
-          var closeBtn = document.getElementById('close_modal');
+          var closeBtn = createTaskForm.parentElement.getElementsByClassName('modal-close')[0];
           if (closeBtn) {
             closeBtn.click();
           }
-        });
-      });
+        }
+      );
     };
   }
+
+  var editTaskForm = document.getElementById('edit_task');
+  if (editTaskForm) {
+    editTaskForm.onsubmit = function(event) {
+      submitListener(event, taskFormSubmit, editTaskForm, 
+        function(responseText) {
+          var table = document.getElementsByClassName('tasks')[0];
+          var rowIndex = editTaskForm.dataset.rowIndex;
+          var replacedRow = table.rows[parseInt(rowIndex)];
+          replacedRow.innerHTML = responseText;
+          addEventListenersToTaskActions(replacedRow);
+          var closeBtn = createTaskForm.parentElement.getElementsByClassName('modal-close')[0];
+          if (closeBtn) {
+            closeBtn.click();
+          }
+        }
+      );
+    };
+  }
+
   var createTodolistForm = document.getElementById('create_todolist');
   if (createTodolistForm) {
     createTodolistForm.onsubmit = function(event) {
-      submitListener(event, function() {
-        var data = {};
-        data['name'] = createTodolistForm.name.value;
-        data['end_time'] = createTodolistForm.end_time.value;
-        var keys = Object.keys(data);
-        var params = [];
-        for (var i in keys) {
-          params.push(keys[i] + '=' + data[keys[i]]);
-        }
-        params = params.join('&');
-        var ajaxParams = {};
-        ajaxParams.url = createTodolistForm.action;
-        ajaxParams.params = params;
-        ajaxParams.method = createTodolistForm.method;
-        sendAJAX(ajaxParams, function(responseText) {
-          var table = document.getElementsByClassName('todolists')[0];
+      submitListener(event, todolistFormSubmit, createTodolistForm, 
+        function(responseText) {
+          var table = document.getElementsByClassName('todolists')[0].getElementsByTagName('tbody')[0];
           var newRow = table.insertRow();
           newRow.innerHTML = responseText;
-          var newColumns = newRow.childNodes;
+          newRow.className = newRow.previousElementSibling.className;
+          window.flatpickrInitTableEl(newRow.querySelector('input.todolist-end-time'));
           addEventListenersToTodolistActions(newRow);
-          var closeBtn = document.getElementById('close_modal');
+          var closeBtn = createTodolistForm.parentElement.getElementsByClassName('modal-close')[0];
           if (closeBtn) {
             closeBtn.click();
           }
-        });
-      });
+        }
+      );
+    };
+  }
+
+  var editTodolistForm = document.getElementById('edit_todolist');
+  if (editTodolistForm) {
+    editTodolistForm.onsubmit = function(event) {
+      submitListener(event, todolistFormSubmit, editTodolistForm,
+        function(responseText) {
+          var rowIndex = editTodolistForm.dataset.rowIndex;
+          var table = document.getElementsByClassName('todolists')[0];
+          var replacedRow = table.rows[parseInt(rowIndex)];
+          replacedRow.innerHTML = responseText;
+          addEventListenersToTodolistActions(replacedRow);
+          var closeBtn = editTodolistForm.parentElement.getElementsByClassName('modal-close')[0];
+          if (closeBtn) {
+            closeBtn.click();
+          }
+        }
+      );
     };
   }
 };
+
+function objectToParams(obj) {
+  var keys = Object.keys(obj);
+  var params = [];
+  for (var i in keys) {
+    params.push(keys[i] + '=' + obj[keys[i]]);
+  }
+  return params.join('&');
+}
+
+function taskFormSubmit(form, callback) {
+  var data = {};
+  data['name'] = form.name.value;
+  data['id'] = form.todolistId.value;
+  data['status'] = form.status.checked ? 1 : 0;
+  data['description'] = form.description.value;
+  var params = objectToParams(data);
+  var ajaxParams = {};
+  ajaxParams.url = form.action;
+  ajaxParams.params = params;
+  ajaxParams.method = form.method;
+  sendAJAX(ajaxParams, function(responseText) {
+    callback(responseText);
+  });
+}
+
+function todolistFormSubmit(form, callback) {
+  var data = {};
+  data['name'] = form.name.value;
+  data['end_time'] = form.end_time.value;
+  var params = objectToParams(data);
+  var ajaxParams = {};
+  ajaxParams.url = form.action;
+  ajaxParams.params = params;
+  ajaxParams.method = form.method;
+  form.name.value = null;
+  form.end_time._flatpickr.clear();
+  sendAJAX(ajaxParams, function(responseText) {
+    callback(responseText);
+  });
+}
 
 function addEventListenersToTaskActions(newRow) {
   var newColumns = newRow.childNodes;
@@ -71,11 +125,11 @@ function addEventListenersToTaskActions(newRow) {
       for (var j in newColumns[i].childNodes) {
         // Устанавливаем обработчики события на вновь поступившие кнопки
         var link = newColumns[i].childNodes[j];
-        if (link.className == 'delete-task') {
+        if (link.className == 'delete-task-btn') {
           setDeleteActionEventListener(newColumns[i].childNodes[j]);
-        } // else if (link.className == 'delete-todolist') {
-
-        // }
+        } else if (link.className == 'edit-task-btn') {
+          setEditTaskEventListener(link);
+        }
       }
       break;
     }
@@ -89,11 +143,11 @@ function addEventListenersToTodolistActions(newRow) {
       for (var j in newColumns[i].childNodes) {
         // Устанавливаем обработчики события на вновь поступившие кнопки
         var link = newColumns[i].childNodes[j];
-        if (link.className == 'delete-todolist') {
+        if (link.className == 'delete-todolist-btn') {
           setDeleteActionEventListener(newColumns[i].childNodes[j]);
-        } // else if (link.className == 'delete-todolist') {
-
-        // }
+        } else if (link.className == 'edit-todolist-btn') {
+          setEditTodolistEventListener(link);
+        }
       }
       break;
     }
@@ -101,10 +155,10 @@ function addEventListenersToTodolistActions(newRow) {
 }
 
 window.setDeleteActionEventListeners = function() {
-  var deleteTaskBtns = Array.from(document.getElementsByClassName('delete-task'));
-  var deleteTodolistBtns = Array.from(document.getElementsByClassName('delete-todolist'));
+  var deleteTaskBtns = Array.from(document.getElementsByClassName('delete-task-btn'));
+  var deleteTodolistBtns = Array.from(document.getElementsByClassName('delete-todolist-btn'));
   var btns = deleteTaskBtns.concat(deleteTodolistBtns);
-  for (var i in btns) {
+  for (var i = 0; i < btns.length; i++) {
     setDeleteActionEventListener(btns[i]);
   }
 };
@@ -128,31 +182,61 @@ function setDeleteActionEventListener(btn) {
 }
 
 window.setEditActionEventListeners = function() {
-  var editTaskBtns = document.getElementsByClassName('edit-task');
-  for (var i in editTaskBtns) {
-    editTaskBtns[i].onclick = function(event) {
-      event.preventDefault();
-      var form = document.getElementById('edit_task');
-      form.action = this.href;
-      // form.name.value = ;
-      form.todolistId.value = this.dataset.todolist_id;
-      // form.description.value = ;
-    };
+  var editTodolistBtns = document.querySelectorAll('a.edit-todolist-btn');
+  for (var i = 0; i < editTodolistBtns.length; i++) {
+    setEditTodolistEventListener(editTodolistBtns[i]);
   }
-  var editTodolistBtns = document.getElementsByClassName('edit-todolist');
-  for (i in editTodolistBtns) {
-    editTodolistBtns[i].onclick = function(event) {
-      event.preventDefault();
-      var form = document.getElementById('edit_todolist');
-      // form.name.value = ;
-      // form.end_time.value = ;
-    };
+  var editTaskBtns = document.querySelectorAll('a.edit-task-btn');
+  for (i = 0; i < editTaskBtns.length; i++) {
+    setEditTaskEventListener(editTaskBtns[i]);
   }
 };
 
+function setEditTodolistEventListener(btn) {
+  btn.onclick = function(event) {
+    event.preventDefault();
+    var parentRow = this.parentElement.parentElement;
+    var timeValue = parentRow.getElementsByTagName('input')[0].value;
+    var nameValue = parentRow.getElementsByClassName('todolist-name')[0].innerText;
+    var form = document.getElementById('edit_todolist');
+    form.name.value = nameValue;
+    form.end_time.value = timeValue;
+    if(!form.end_time._flatpickr) {
+      flatpickr(form.end_time, {
+        enableTime: true,
+        altInput: true,
+        altFormat: 'F j, Y H:i',
+        dateFormat: 'H:i Y-m-d'
+      });
+    }
+    form.action = this.href;
+    form.method = this.dataset.method;
+    form.dataset.rowIndex = parentRow.rowIndex;
+    document.getElementById('edit_modal').style.display = 'block';
+  };
+}
+
+function setEditTaskEventListener(btn) {
+  btn.onclick = function(event) {
+    event.preventDefault();
+    var parentRow = this.parentElement.parentElement;
+    var nameValue = parentRow.getElementsByClassName('task-name')[0].innerText;
+    var statusValue = parentRow.getElementsByClassName('task-status')[0].innerText;
+    var descriptionValue = parentRow.getElementsByClassName('task-description')[0].innerText;
+    var form = document.getElementById('edit_task');
+    form.name.value = nameValue;
+    form.status.checked = statusValue === 'true';
+    form.description.value = descriptionValue;
+    form.action = this.href;
+    form.method = this.dataset.method;
+    form.dataset.rowIndex = parentRow.rowIndex;
+    document.getElementById('edit_modal').style.display = 'block';
+  };
+}
+
 function submitListener(event, callback) {
   event.preventDefault();
-  callback();
+  callback(arguments[2], arguments[3]);
 }
 
 function sendAJAX(ajaxParams = {}, callback) {

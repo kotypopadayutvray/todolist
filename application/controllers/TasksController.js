@@ -61,9 +61,10 @@ exports.createTodolist = function(request, response) {
 };
 
 exports.updateTodolist = function(request, response) {
+  console.log('Ok, trying to update todolist');
   models.Todolist.findById(request.params.id).then(todolist => {
-    todolist.name = request.params.name;
-    todolist.end_time = request.params.name;
+    todolist.name = request.body.name;
+    todolist.end_time = request.body.end_time;
     todolist.save().then(() => {
       response.render(viewPath + '_todolist.ejs', { todolist: todolist });
     }).catch(errors => {
@@ -103,9 +104,9 @@ exports.createTask = function(request, response) {
 
 exports.updateTask = function(request, response) {
   models.Task.findById(request.params.id).then(task => {
-    task.name = request.params.name;
-    task.description = request.params.description;
-    task.status = request.params.status;
+    task.name = request.body.name;
+    task.description = request.body.description;
+    task.status = request.body.status * 1;
     task.save().then(() => {
       response.render(viewPath + '_task.ejs', { task: task });
     }).catch(errors => {
